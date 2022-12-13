@@ -1,5 +1,6 @@
 package com.demo.beans;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -23,6 +24,22 @@ public class UserBean {
 	@Pattern(regexp = "[a-zA-Z0-9]*", message = "영문대소문자와 숫자만 사용가능")
 	private String user_pw2;
 	
+	@AssertTrue(message = "아이디 중복체크 해주세요") 
+	private boolean userIdChecked; //id가 중복이면 false 아니면 true
+	
+	public UserBean() {
+		this.userIdChecked = false; //처음 값은 id체크 안됨 false
+	}
+		
+	public boolean isUserIdChecked() {
+		return userIdChecked;
+	}
+
+	public void setUserIdChecked(boolean userIdChecked) {
+		this.userIdChecked = userIdChecked;
+	}
+
+
 	public int getUser_idx() {
 		return user_idx;
 	}
