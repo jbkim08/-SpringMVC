@@ -53,6 +53,7 @@
                   <form:label path="user_pw2">비밀번호 확인</form:label>
                   <form:input path="user_pw2" class="form-control" />
                   <form:errors path="user_pw2" style="color:coral" />
+                  <div style="color:coral">${msg }</div>
                 </div>
                 <div class="form-group">
                   <div class="text-right">
