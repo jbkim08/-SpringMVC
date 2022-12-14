@@ -77,6 +77,12 @@ public class UserController {
 	
 	@GetMapping("/logout")
 	public String logout() {
+		loginUserBean.setUserLogin(false);
 		return "user/logout";
+	}
+	
+	@GetMapping("/not_login")
+	public String not_login() {
+		return "user/not_login";
 	}
 }
