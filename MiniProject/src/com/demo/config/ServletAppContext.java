@@ -30,6 +30,7 @@ import com.demo.service.MenuService;
 //스캔할 패키지를 지정한다.
 @ComponentScan("com.demo.controller")
 @ComponentScan("com.demo.service")
+@ComponentScan("com.demo.beans")
 @PropertySource("/WEB-INF/properties/db.properties")
 public class ServletAppContext implements WebMvcConfigurer {
 	
