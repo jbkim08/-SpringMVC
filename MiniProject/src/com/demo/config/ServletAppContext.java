@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -128,5 +129,10 @@ public class ServletAppContext implements WebMvcConfigurer {
 		reg2.addPathPatterns("/user/modify", "/user/logout", "/board/*");
 		reg2.excludePathPatterns("/board/main");
 		
+	}
+	
+	@Bean
+	public StandardServletMultipartResolver multipartResolver() {
+		return new StandardServletMultipartResolver();
 	}
 }
