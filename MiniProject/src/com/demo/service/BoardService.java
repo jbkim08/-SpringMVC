@@ -2,16 +2,27 @@ package com.demo.service;
 
 import java.io.File;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.demo.beans.ContentBean;
+import com.demo.beans.LoginUserBean;
+import com.demo.mapper.BoardMapper;
 
 @Service
 @PropertySource("/WEB-INF/properties/option.properties")
 public class BoardService {
+
+	@Autowired
+	private BoardMapper boardMapper;
+
+	@Resource(name = "loginUserBean")
+	private LoginUserBean loginUserBean;
 
 	@Value("${path.upload}")
 	private String path_upload;
@@ -42,6 +53,10 @@ public class BoardService {
 			//파일의 이름을 저장한다
 			writeContentBean.setContent_file(file_name);
 		}
+		//글쓴이는 현재 로그인 된 유저
+		writeContentBean.setContent_writer_idx(loginUserBean.getUser_idx());
+
+		boardMapper.addContentInfo(writeContentBean);
 
 	}
 

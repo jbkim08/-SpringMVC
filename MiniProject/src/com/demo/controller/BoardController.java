@@ -48,7 +48,7 @@ public class BoardController {
 		if(result.hasErrors()) {
 			return "board/write";
 		}
-		//DB에 저장
+		//DB에 저장(파일이름 포함, 제목, 내용, 글쓴이, 글쓴날짜)
 		boardService.addContentInfo(writeContentBean);
 
 		return "board/write_success";
