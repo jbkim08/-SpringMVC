@@ -89,14 +89,33 @@ public class BoardController {
 		return "board/modify";
 	}
 	
+	@PostMapping("/modify_pro")
+	public String modify_pro(@Valid @ModelAttribute("modifyContentBean") ContentBean modifyContentBean,
+						 BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return "board/modify";
+		}
+		//DB에서 업데이트
+		boardService.modifyContentInfo(modifyContentBean);
+		return "board/modify_success";
+	}
+	
 	@GetMapping("/delete")
-	public String delete() {
+	public String delete(@RequestParam("board_info_idx") int board_info_idx,
+	 			 @RequestParam("content_idx") int content_idx, Model model) {
+
+		boardService.deleteContentInfo(content_idx);
+		model.addAttribute("board_info_idx", board_info_idx);
+		
 		return "board/delete";
-	}	
+	}
 	
 	@GetMapping("/not_writer")
 	public String not_writer() {
 		return "board/not_writer";
 	}
+	
+	
 
 }

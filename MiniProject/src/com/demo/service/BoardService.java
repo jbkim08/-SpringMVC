@@ -84,4 +84,21 @@ public class BoardService {
 		modifyContentBean.setContent_text(temp.getContent_text());
 		modifyContentBean.setContent_file(temp.getContent_file());
 	}
+	
+	public void modifyContentInfo(ContentBean modifyContentBean) {
+		
+		MultipartFile upload_file = modifyContentBean.getUpload_file();
+		
+		//새로 이미지를 업로드 했으면 그 이미지 이름으로 수정한다.
+		if(upload_file.getSize() > 0) {
+			String file_name = saveUploadFile(upload_file);
+			modifyContentBean.setContent_file(file_name);
+		}
+		
+		boardMapper.modifyContentInfo(modifyContentBean);
+	}
+	
+	public void deleteContentInfo(int content_idx) {
+		boardMapper.deleteContentInfo(content_idx);
+	}
 }
