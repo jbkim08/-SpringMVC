@@ -23,6 +23,16 @@ public class ContentBean {
 	
 	private String content_fileString;	    //파일의 이름을 넣을 문자열 변수
 	
+	private String content_writer_name;  //글쓴이 이름 추가
+
+	public String getContent_writer_name() {
+		return content_writer_name;
+	}
+
+	public void setContent_writer_name(String content_writer_name) {
+		this.content_writer_name = content_writer_name;
+	}
+	
 	public int getContent_idx() {
 		return content_idx;
 	}

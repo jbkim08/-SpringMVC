@@ -1,6 +1,7 @@
 package com.demo.service;
 
 import java.io.File;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -58,6 +59,18 @@ public class BoardService {
 
 		boardMapper.addContentInfo(writeContentBean);
 
+	}
+	
+	public String getBoardInfoName(int board_info_idx) {
+		return boardMapper.getBoardInfoName(board_info_idx);
+	}
+	
+	public List<ContentBean> getContentList(int board_info_idx){
+		return boardMapper.getContentList(board_info_idx);
+	}
+	
+	public ContentBean getContentInfo(int content_idx) {
+		return boardMapper.getContentInfo(content_idx);
 	}
 
 }
