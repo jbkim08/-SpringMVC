@@ -76,7 +76,16 @@ public class BoardController {
 	}
 	
 	@GetMapping("/modify")
-	public String modify() {
+	public String modify(@RequestParam("board_info_idx") int board_info_idx,
+  			 @RequestParam("content_idx") int content_idx, Model model,
+  			 @ModelAttribute("modifyContentBean") ContentBean modifyContentBean) {
+
+		modifyContentBean.setContent_board_idx(board_info_idx);
+		modifyContentBean.setContent_idx(content_idx);
+		
+		boardService.getContents(modifyContentBean);		
+		model.addAttribute("modifyContentBean", modifyContentBean);
+		
 		return "board/modify";
 	}
 	
@@ -84,5 +93,10 @@ public class BoardController {
 	public String delete() {
 		return "board/delete";
 	}	
+	
+	@GetMapping("/not_writer")
+	public String not_writer() {
+		return "board/not_writer";
+	}
 
 }
